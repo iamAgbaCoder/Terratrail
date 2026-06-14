@@ -1,81 +1,51 @@
 import { motion } from 'framer-motion'
 
 export function CTASection() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2,
-      },
-    },
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6 },
-    },
-  }
-
   return (
-    <section className="py-20 md:py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-      {/* Gradient Background */}
-      <div className="absolute inset-0 bg-gradient-to-r from-navy-900 to-primary opacity-90" />
+    <section className="relative overflow-hidden bg-navy-950 py-24 md:py-36 px-4 sm:px-6 lg:px-8">
+      {/* Decorative glows */}
+      <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-brand-blue/10 blur-3xl" />
+      <div className="pointer-events-none absolute bottom-0 right-0 w-80 h-80 rounded-full bg-indigo-600/10 blur-3xl" />
+      <div className="pointer-events-none absolute bottom-0 left-0 w-64 h-64 rounded-full bg-brand-blue/8 blur-3xl" />
 
       <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
-        className="max-w-4xl mx-auto text-center relative z-10"
+        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        className="relative z-10 max-w-3xl mx-auto text-center"
       >
-        {/* Headline */}
-        <motion.h2
-          variants={itemVariants}
-          className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 leading-tight"
-        >
-          Stop managing your estate on WhatsApp.
+        <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-[1.08] tracking-tight mb-6">
+          Stop managing your estate{' '}
+          <span className="text-white/60">on WhatsApp.</span>
           <br />
-          <span className="text-white/90">Start on TerraTrail.</span>
-        </motion.h2>
+          Start on TerraTrail.
+        </h2>
 
-        {/* Description */}
-        <motion.p
-          variants={itemVariants}
-          className="text-lg md:text-xl text-white/80 mb-12 max-w-2xl mx-auto"
-        >
+        <p className="text-[17px] text-white/50 mb-12 max-w-lg mx-auto leading-relaxed">
           Join hundreds of real estate businesses simplifying their operations and scaling faster.
-        </motion.p>
+        </p>
 
-        {/* CTA Buttons */}
-        <motion.div
-          variants={itemVariants}
-          className="flex flex-col sm:flex-row gap-4 justify-center"
-        >
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="bg-white text-navy-900 px-8 py-4 rounded-full font-semibold hover:shadow-xl transition-shadow"
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <motion.a
+            whileHover={{ scale: 1.04, y: -2 }}
+            whileTap={{ scale: 0.97 }}
+            href="#get-started"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-navy-900 font-black text-[15px] rounded-xl hover:bg-blue-50 transition-colors shadow-glow"
           >
-            Get Started
-          </motion.button>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white/10 transition-colors"
+            Get Started Free
+            <span className="material-icons-round text-[18px]">arrow_forward</span>
+          </motion.a>
+          <motion.a
+            whileHover={{ scale: 1.04, y: -2 }}
+            whileTap={{ scale: 0.97 }}
+            href="#book-demo"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-white/20 text-white font-bold text-[15px] rounded-xl hover:border-white/40 hover:bg-white/5 transition-all"
           >
-            Book Demo
-          </motion.button>
-        </motion.div>
+            Book a Demo
+          </motion.a>
+        </div>
       </motion.div>
-
-      {/* Decorative Elements */}
-      <div className="absolute top-0 right-0 w-72 h-72 bg-primary/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
     </section>
   )
 }

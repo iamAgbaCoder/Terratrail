@@ -5,100 +5,85 @@ import { faqItems } from '@data/content'
 export function FAQ() {
   const [openId, setOpenId] = useState<string | null>(null)
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.05,
-        delayChildren: 0.2,
-      },
-    },
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 10 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.4 },
-    },
-  }
-
   return (
-    <section className="py-20 md:py-32 bg-light-gray px-4 sm:px-6 lg:px-8">
+    <section className="py-20 md:py-32 bg-white px-4 sm:px-6 lg:px-8">
       <div className="max-w-3xl mx-auto">
-        {/* Heading */}
-        <motion.h2
+
+        {/* Header */}
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-3xl md:text-4xl font-bold text-center text-text mb-16"
+          className="text-center mb-14"
         >
-          Got questions? We've got answers.
-        </motion.h2>
-
-        {/* FAQ Items */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="space-y-4"
-        >
-          {faqItems.map((item) => (
-            <motion.div
-              key={item.id}
-              variants={itemVariants}
-              className="bg-white rounded-xl border border-border overflow-hidden hover:border-primary/50 transition-colors"
-            >
-              <button
-                onClick={() => setOpenId(openId === item.id ? null : item.id)}
-                className="w-full px-6 py-5 flex items-center justify-between hover:bg-light-gray transition-colors group"
-              >
-                <span className="text-left font-semibold text-text group-hover:text-primary transition-colors">
-                  {item.question}
-                </span>
-                <motion.div
-                  animate={{ rotate: openId === item.id ? 180 : 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="flex-shrink-0 ml-4"
-                >
-                  <svg
-                    className="w-5 h-5 text-primary"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                    />
-                  </svg>
-                </motion.div>
-              </button>
-
-              <AnimatePresence>
-                {openId === item.id && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="overflow-hidden"
-                  >
-                    <div className="px-6 py-4 bg-light-gray border-t border-border">
-                      <p className="text-muted leading-relaxed">{item.answer}</p>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
-          ))}
+          <span className="inline-flex items-center gap-2 text-brand-blue text-[13px] font-bold tracking-wide mb-4">
+            <span className="w-1.5 h-1.5 rounded-full bg-brand-blue inline-block"></span>FAQ
+          </span>
+          <h2 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">
+            Get questions? We've got answers.
+          </h2>
         </motion.div>
+
+        {/* Items */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="space-y-3"
+        >
+          {faqItems.map((item, i) => {
+            const isOpen = openId === item.id
+            return (
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.06 }}
+                className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
+                  isOpen
+                    ? 'border-navy-900/20 shadow-card bg-white'
+                    : 'border-slate-200 bg-white hover:border-slate-300 hover:shadow-soft'
+                }`}
+              >
+                <button
+                  onClick={() => setOpenId(isOpen ? null : item.id)}
+                  className="w-full px-6 py-5 flex items-center justify-between text-left group"
+                >
+                  <span className={`text-[15px] font-bold pr-4 transition-colors ${isOpen ? 'text-navy-900' : 'text-slate-800 group-hover:text-navy-900'}`}>
+                    {item.question}
+                  </span>
+                  <motion.span
+                    animate={{ rotate: isOpen ? 45 : 0 }}
+                    transition={{ duration: 0.25, ease: 'easeInOut' }}
+                    className={`material-icons-round text-[22px] flex-shrink-0 transition-colors ${isOpen ? 'text-navy-900' : 'text-slate-400 group-hover:text-navy-900'}`}
+                  >
+                    add
+                  </motion.span>
+                </button>
+
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                      className="overflow-hidden"
+                    >
+                      <p className="px-6 pb-6 text-[15px] text-slate-500 leading-[1.75]">
+                        {item.answer}
+                      </p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            )
+          })}
+        </motion.div>
+
       </div>
     </section>
   )

@@ -1,7 +1,5 @@
 export { Navbar } from './Navbar'
 export { Hero } from './Hero'
-export { FeatureIcons } from './FeatureIcons'
-export { FeatureShowcase } from './FeatureShowcase'
 export { FeatureSection } from './FeatureSection'
 export { Testimonials } from './Testimonials'
 export { Pricing } from './Pricing'

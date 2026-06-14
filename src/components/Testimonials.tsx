@@ -1,74 +1,74 @@
 import { motion } from 'framer-motion'
 import { testimonials } from '@data/content'
 
+const avatarColors = [
+  'bg-indigo-100 text-indigo-600',
+  'bg-rose-100 text-rose-600',
+  'bg-amber-100 text-amber-600',
+]
+
 export function Testimonials() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
-    },
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6 },
-    },
-  }
-
   return (
-    <section className="py-20 md:py-32 bg-navy-900 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        {/* Heading */}
-        <motion.h2
+    <section className="py-20 md:py-32 bg-navy-950 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      {/* Background blobs */}
+      <div className="pointer-events-none absolute -top-40 -left-40 w-[480px] h-[480px] rounded-full bg-navy-900/60 blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-40 -right-40 w-[480px] h-[480px] rounded-full bg-brand-blue/10 blur-3xl" />
+
+      <div className="max-w-7xl mx-auto relative z-10">
+
+        {/* Header */}
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-3xl md:text-4xl font-bold text-center text-white mb-16"
+          className="text-center mb-16"
         >
-          Real estate operations running smarter on TerraTrail
-        </motion.h2>
+          <span className="inline-flex items-center gap-2 text-blue-400 text-[13px] font-bold tracking-wide mb-4">
+            <span className="w-1.5 h-1.5 rounded-full bg-blue-400 inline-block"></span>Testimonials
+          </span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight tracking-tight max-w-xl mx-auto">
+            Real estate companies running smarter on TerraTrail
+          </h2>
+        </motion.div>
 
-        {/* Testimonials Grid */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6"
-        >
-          {testimonials.map((testimonial) => (
+        {/* Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
+          {testimonials.map((t, i) => (
             <motion.div
-              key={testimonial.id}
-              variants={itemVariants}
-              whileHover={{ y: -4 }}
-              className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-8 hover:border-primary/50 transition-colors"
+              key={t.id}
+              initial={{ opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: i * 0.1 }}
+              whileHover={{ y: -5 }}
+              className="bg-white/[0.06] backdrop-blur-md border border-white/10 rounded-2xl p-7 hover:bg-white/[0.09] hover:border-white/20 transition-all duration-300 flex flex-col"
             >
+              {/* Stars */}
+              <div className="flex gap-0.5 mb-5">
+                {Array.from({ length: 5 }).map((_, si) => (
+                  <span key={si} className="material-icons-round text-amber-400 text-[16px]">star</span>
+                ))}
+              </div>
+
               {/* Quote */}
-              <p className="text-white/90 leading-relaxed mb-6 text-lg">
-                "{testimonial.quote}"
+              <p className="text-white/80 text-[15px] leading-[1.75] flex-1 mb-7">
+                "{t.quote}"
               </p>
 
-              {/* Author Info */}
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-2xl">
-                  {testimonial.avatar}
+              {/* Author */}
+              <div className="flex items-center gap-3 pt-5 border-t border-white/10">
+                <div className={`w-10 h-10 rounded-full flex items-center justify-center text-[13px] font-black flex-shrink-0 ${avatarColors[i]}`}>
+                  {t.avatar}
                 </div>
                 <div>
-                  <p className="text-white font-semibold">{testimonial.author}</p>
-                  <p className="text-gray-400 text-sm">{testimonial.role}</p>
+                  <p className="text-white font-bold text-[14px]">{t.author}</p>
+                  <p className="text-white/45 text-[12px] font-medium">{t.role}</p>
                 </div>
               </div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   )

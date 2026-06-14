@@ -1,90 +1,152 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
+import { opsCards } from '@data/content'
 
 export function Hero() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.1,
-      },
-    },
-  }
+  const [activeTab, setActiveTab] = useState(1)
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, ease: 'easeOut' },
-    },
+  const container = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { staggerChildren: 0.14, delayChildren: 0.05 } },
+  }
+  const item = {
+    hidden: { opacity: 0, y: 28 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.72, ease: [0.22, 1, 0.36, 1] } },
   }
 
   return (
-    <section className="min-h-screen bg-white pt-20 pb-16 md:pt-32 md:pb-24 px-4 sm:px-6 lg:px-8">
+    <section className="hero-gradient pt-28 pb-16 md:pt-40 md:pb-24 px-4 sm:px-6 overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="text-center"
-        >
+        <motion.div variants={container} initial="hidden" animate="visible" className="text-center">
+
+          {/* Eyebrow badge */}
+          <motion.div variants={item} className="flex justify-center mb-7">
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-100 text-brand-blue text-[13px] font-bold tracking-wide">
+              <span className="w-1.5 h-1.5 rounded-full bg-brand-blue inline-block"></span>
+              Built for Nigerian Land Sales
+            </span>
+          </motion.div>
+
           {/* Headline */}
           <motion.h1
-            variants={itemVariants}
-            className="text-4xl md:text-5xl lg:text-6xl font-bold text-text leading-tight mb-6"
+            variants={item}
+            className="text-[40px] sm:text-5xl md:text-6xl lg:text-[68px] font-black text-slate-900 leading-[1.07] tracking-[-0.02em] mb-6 max-w-4xl mx-auto"
           >
-            Manage Your Land Sales with <span className="text-primary">Clarity and Control</span>
+            The operations stack your{' '}
+            <span className="text-gradient-blue">land sales business</span>{' '}
+            actually needs
           </motion.h1>
 
-          {/* Subheadline */}
+          {/* Subtext */}
           <motion.p
-            variants={itemVariants}
-            className="text-lg md:text-xl text-muted max-w-2xl mx-auto mb-10"
+            variants={item}
+            className="text-[17px] text-slate-500 max-w-xl mx-auto mb-11 leading-relaxed"
           >
-            Stop managing your real estate operations on WhatsApp. TerraTrail brings clarity to property listings, installment tracking, and commission management.
+            Terratrail shows you exactly where money is coming in, which customers are falling
+            behind, and which plots are still available without opening a single spreadsheet.
           </motion.p>
 
-          {/* CTA Buttons */}
+          {/* Tab pills */}
           <motion.div
-            variants={itemVariants}
-            className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
+            variants={item}
+            className="flex flex-wrap items-center justify-center gap-3 mb-12"
           >
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-navy-900 text-white px-8 py-3 rounded-full font-semibold hover:shadow-xl transition-shadow"
-            >
-              Get Started
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="border-2 border-primary text-primary px-8 py-3 rounded-full font-semibold hover:bg-primary/5 transition-colors"
-            >
-              Book Demo
-            </motion.button>
+            {opsCards.map((card, i) => (
+              <button
+                key={card.id}
+                onClick={() => setActiveTab(i)}
+                className={`flex items-center gap-2 px-5 py-2.5 rounded-full border text-[13px] font-bold transition-all duration-300 ${
+                  activeTab === i
+                    ? 'bg-navy-900 text-white border-navy-900 shadow-elevated'
+                    : 'bg-white text-slate-600 border-slate-200 hover:border-navy-900/30 hover:shadow-soft'
+                }`}
+              >
+                <span className="material-icons-round text-[18px]">{card.icon}</span>
+                {card.tabLabel}
+              </button>
+            ))}
           </motion.div>
 
-          {/* Dashboard Screenshot Card */}
-          <motion.div
-            variants={itemVariants}
-            whileHover={{ y: -8 }}
-            transition={{ duration: 0.3 }}
-            className="relative"
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-navy-900/20 rounded-2xl blur-2xl" />
-            <div className="relative bg-light-gray rounded-2xl shadow-xl border border-border overflow-hidden">
-              <div className="aspect-video bg-gradient-to-br from-navy-900/5 to-primary/5 flex items-center justify-center">
-                <div className="text-center p-8">
-                  <div className="text-5xl mb-4">📊</div>
-                  <p className="text-muted">Dashboard Preview</p>
-                  <p className="text-sm text-muted mt-2">Production-ready interface</p>
-                </div>
-              </div>
+          {/* Card carousel */}
+          <motion.div variants={item} className="relative">
+            {/* Side fade overlays */}
+            <div className="pointer-events-none absolute inset-y-0 left-0 w-6 md:w-16 z-10 bg-gradient-to-r from-white to-transparent" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 w-6 md:w-16 z-10 bg-gradient-to-l from-white to-transparent" />
+
+            <div className="flex items-stretch justify-center gap-4 md:gap-5">
+              {opsCards.map((card, i) => {
+                const isActive = i === activeTab
+                return (
+                  <motion.div
+                    key={card.id}
+                    onClick={() => setActiveTab(i)}
+                    animate={{
+                      scale: isActive ? 1 : 0.87,
+                      opacity: isActive ? 1 : 0.52,
+                    }}
+                    transition={{ type: 'spring', stiffness: 280, damping: 24 }}
+                    className={`flex-shrink-0 w-[300px] sm:w-[340px] md:w-[380px] rounded-2xl md:rounded-3xl cursor-pointer text-left ${
+                      isActive
+                        ? 'dark-card-gradient shadow-feature'
+                        : 'bg-white shadow-card border border-slate-100'
+                    }`}
+                  >
+                    <div className="p-7 md:p-9 flex flex-col h-full min-h-[280px]">
+                      {/* Icon bubble */}
+                      <div
+                        className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-7 flex-shrink-0 ${
+                          isActive ? 'bg-white/15 shimmer-bg' : 'bg-navy-900'
+                        }`}
+                      >
+                        <span className="material-icons-round text-[22px] text-white">
+                          {card.icon}
+                        </span>
+                      </div>
+
+                      {/* Title */}
+                      <h3
+                        className={`text-[19px] font-black leading-snug mb-3 ${
+                          isActive ? 'text-white' : 'text-slate-800'
+                        }`}
+                      >
+                        {card.title}
+                      </h3>
+
+                      {/* Body */}
+                      <p
+                        className={`text-[14px] leading-[1.75] flex-1 mb-8 ${
+                          isActive ? 'text-blue-100/70' : 'text-slate-500'
+                        }`}
+                      >
+                        {card.description}
+                      </p>
+
+                      {/* CTA row */}
+                      <div className="flex items-center gap-3">
+                        <span
+                          className={`text-[13px] font-bold ${
+                            isActive ? 'text-white' : 'text-navy-900'
+                          }`}
+                        >
+                          {card.cta}
+                        </span>
+                        <span
+                          className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
+                            isActive ? 'bg-white/20' : 'bg-navy-900'
+                          }`}
+                        >
+                          <span className="material-icons-round text-[16px] text-white">
+                            arrow_forward
+                          </span>
+                        </span>
+                      </div>
+                    </div>
+                  </motion.div>
+                )
+              })}
             </div>
           </motion.div>
+
         </motion.div>
       </div>
     </section>

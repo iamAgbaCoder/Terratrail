@@ -1,17 +1,19 @@
-export interface FeatureIcon {
+export interface OpsCard {
   id: string
   icon: string
-  label: string
+  tabLabel: string
+  title: string
+  description: string
+  cta: string
 }
 
 export interface Feature {
   id: string
   number: number
+  badge: string
   headline: string
   description: string
   buttonText: string
-  image: string
-  imageAlt: string
   imagePosition: 'left' | 'right'
 }
 
@@ -23,12 +25,17 @@ export interface Testimonial {
   avatar: string
 }
 
+export interface PricingPrice {
+  quarterly: number
+  annually: number
+}
+
 export interface PricingPlan {
   id: string
   name: string
-  price: number
+  price: PricingPrice
   currency: string
-  period: string
+  periodLabel: string
   description: string
   features: string[]
   cta: string

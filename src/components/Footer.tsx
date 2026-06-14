@@ -1,112 +1,87 @@
 import { motion } from 'framer-motion'
 
+const links = {
+  Product: ['Features', 'Pricing', 'Integrations', 'Security', 'Changelog'],
+  Company: ['About Us', 'Blog', 'Careers', 'Contact'],
+  Contact: ['hello@terratrail.app', 'Twitter / X', 'LinkedIn', 'Instagram'],
+}
+
 export function Footer() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
-    },
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5 },
-    },
-  }
-
-  const footerSections = [
-    {
-      title: 'TerraTrail',
-      items: [
-        'Simplifying real estate operations for Nigerian businesses',
-      ],
-    },
-    {
-      title: 'Product',
-      items: ['Features', 'Pricing', 'Integrations', 'Security'],
-    },
-    {
-      title: 'Company',
-      items: ['About Us', 'Blog', 'Careers', 'Contact'],
-    },
-    {
-      title: 'Legal',
-      items: ['Privacy Policy', 'Terms of Service', 'Cookie Policy'],
-    },
-  ]
-
-  const socialLinks = [
-    { name: 'Email', icon: '✉️', link: 'mailto:hello@terratrail.com' },
-    { name: 'Instagram', icon: '📷', link: '#' },
-    { name: 'LinkedIn', icon: '💼', link: '#' },
-  ]
-
   return (
-    <footer className="bg-navy-900 text-white px-4 sm:px-6 lg:px-8">
+    <footer className="bg-navy-950 border-t border-white/5 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        {/* Main Footer Content */}
+
+        {/* Main grid */}
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-8 py-16 md:py-24 border-b border-white/10"
+          transition={{ duration: 0.6 }}
+          className="grid grid-cols-2 md:grid-cols-4 gap-10 py-16 md:py-20 border-b border-white/8"
         >
-          {footerSections.map((section) => (
-            <motion.div key={section.title} variants={itemVariants}>
-              <h3 className="font-bold text-lg mb-4">{section.title}</h3>
+          {/* Brand */}
+          <div className="col-span-2 md:col-span-1">
+            <div className="flex items-center gap-2 mb-4">
+              <div className="w-7 h-7 rounded-lg bg-white/10 flex items-center justify-center">
+                <span className="material-icons-round text-white text-[15px]">terrain</span>
+              </div>
+              <span className="text-[17px] font-black text-white tracking-tight">Terratrail</span>
+            </div>
+            <p className="text-[13px] text-white/40 leading-relaxed max-w-[200px]">
+              Simplifying land sales operations for Nigerian real estate businesses.
+            </p>
+            <div className="flex items-center gap-3 mt-6">
+              {[
+                { icon: 'mail', label: 'Email' },
+                { icon: 'link', label: 'Twitter' },
+                { icon: 'work', label: 'LinkedIn' },
+              ].map(({ icon, label }) => (
+                <a
+                  key={label}
+                  href="#"
+                  aria-label={label}
+                  className="w-9 h-9 rounded-xl bg-white/6 hover:bg-white/12 flex items-center justify-center transition-colors"
+                >
+                  <span className="material-icons-round text-white/60 text-[17px]">{icon}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Link columns */}
+          {Object.entries(links).map(([section, items]) => (
+            <div key={section}>
+              <h4 className="text-[12px] font-black text-white/30 uppercase tracking-[0.12em] mb-4">{section}</h4>
               <ul className="space-y-3">
-                {section.items.map((item) => (
+                {items.map((item) => (
                   <li key={item}>
                     <a
                       href="#"
-                      className="text-gray-400 hover:text-white transition-colors"
+                      className="text-[13px] text-white/55 hover:text-white transition-colors font-medium"
                     >
                       {item}
                     </a>
                   </li>
                 ))}
               </ul>
-            </motion.div>
+            </div>
           ))}
         </motion.div>
 
-        {/* Bottom Footer */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="py-8 flex flex-col md:flex-row items-center justify-between gap-8"
-        >
-          {/* Copyright */}
-          <p className="text-gray-400 text-sm text-center md:text-left">
-            © 2024 TerraTrail. All rights reserved. Built for the future of real estate.
+        {/* Bottom bar */}
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 py-6">
+          <p className="text-[12px] text-white/30 font-medium">
+            © 2025 Terratrail. All rights reserved.
           </p>
-
-          {/* Social Links */}
-          <div className="flex gap-6">
-            {socialLinks.map((social) => (
-              <motion.a
-                key={social.name}
-                href={social.link}
-                whileHover={{ scale: 1.2 }}
-                whileTap={{ scale: 0.95 }}
-                className="text-2xl hover:text-primary transition-colors"
-                aria-label={social.name}
-              >
-                {social.icon}
-              </motion.a>
+          <div className="flex items-center gap-5">
+            {['Privacy Policy', 'Terms of Service', 'Cookie Policy'].map((item) => (
+              <a key={item} href="#" className="text-[12px] text-white/30 hover:text-white/60 transition-colors">
+                {item}
+              </a>
             ))}
           </div>
-        </motion.div>
+        </div>
+
       </div>
     </footer>
   )

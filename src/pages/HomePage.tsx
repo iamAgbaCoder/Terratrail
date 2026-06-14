@@ -1,8 +1,6 @@
 import {
   Navbar,
   Hero,
-  FeatureIcons,
-  FeatureShowcase,
   FeatureSection,
   Testimonials,
   Pricing,
@@ -15,14 +13,14 @@ export function HomePage() {
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
-      <Hero />
-      <FeatureIcons />
-      <FeatureShowcase />
-      <FeatureSection />
-      <Testimonials />
-      <Pricing />
-      <FAQ />
-      <CTASection />
+      <main>
+        <Hero />
+        <FeatureSection />
+        <Testimonials />
+        <Pricing />
+        <FAQ />
+        <CTASection />
+      </main>
       <Footer />
     </div>
   )
