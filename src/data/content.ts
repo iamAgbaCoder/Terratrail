@@ -37,9 +37,10 @@ export const features: Feature[] = [
     badge: 'Property Management',
     headline: 'List Properties with Pricing Plans & Installment Schedules',
     description:
-      'Create estates with multiple pricing tiers — Launch Price, Pre-launch Price, whatever you need. Attach gallery images, property documents, and location details. Configure bank transfer or online payment collection per property.',
+      'Create estates with multiple payment plans, whatever you need. Attach gallery images, property documents, and location details. Configure bank transfer or online payment collection per property.',
     buttonText: 'Get Started',
     imagePosition: 'right',
+    // imageSrc: '/public/feature-1.png',
   },
   {
     id: 'tracking',

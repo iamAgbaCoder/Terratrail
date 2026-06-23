@@ -13,8 +13,12 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+
   body {
-    font-family: 'Gothic A1', system-ui, sans-serif;
+    font-family: "Space Grotesk", 'Inter', sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
     color: #0f172a;
     background-color: #ffffff;
     overflow-x: hidden;
