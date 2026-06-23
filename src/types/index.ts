@@ -15,6 +15,10 @@ export interface Feature {
   description: string
   buttonText: string
   imagePosition: 'left' | 'right'
+  /** One or two screenshot mockups for this feature. Omit to fall back to the coded mockup. */
+  images?: string[]
+  /** Short captions shown under each mockup, parallel to `images`. */
+  imageCaptions?: string[]
 }
 
 export interface Testimonial {

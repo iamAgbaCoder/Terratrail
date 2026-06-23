@@ -40,7 +40,8 @@ export const features: Feature[] = [
       'Create estates with multiple payment plans, whatever you need. Attach gallery images, property documents, and location details. Configure bank transfer or online payment collection per property.',
     buttonText: 'Get Started',
     imagePosition: 'right',
-    // imageSrc: '/public/feature-1.png',
+    images: ['/img/payment_plan1.jpg', '/img/payment_plan2.jpg'],
+    imageCaptions: ['Admin pricing & plan setup', 'Customer-facing listing'],
   },
   {
     id: 'tracking',
@@ -51,6 +52,8 @@ export const features: Feature[] = [
       'Every customer subscription generates a full installment schedule automatically. Payments are logged when customers upload receipts. Automated email reminders for 7 days before, 2 days before, on the due date, and 2 days after. No more WhatsApp chasing.',
     buttonText: 'Get Started',
     imagePosition: 'left',
+    images: ['/img/installment_schedule2.jpg', '/img/installment_schedule1.jpg'],
+    imageCaptions: ['Live subscription status', 'Auto-generated schedule'],
   },
   {
     id: 'realtor',
@@ -61,6 +64,8 @@ export const features: Feature[] = [
       'Set up Realtor, Senior Realtor, and Principal Realtor tiers. Each tier gets a unique invite link. Reps self-register, get a referral code, and commissions are calculated automatically when their referred customers make payments. No more manual spreadsheet lookups.',
     buttonText: 'Get Started',
     imagePosition: 'right',
+    images: ['/img/commission_settings.jpg'],
+    imageCaptions: ['Tiered commission rates'],
   },
   {
     id: 'customer-dashboard',
@@ -81,6 +86,8 @@ export const features: Feature[] = [
       'Your Overview dashboard shows total revenue collected, outstanding balance across all active subscriptions, and potential revenue if every customer completes their plan. Filter by property, customer rep, or time period. Leaderboards show top-performing estates, reps, and customers.',
     buttonText: 'Get Started',
     imagePosition: 'right',
+    images: ['/img/revenue_metricsjpg.jpg'],
+    imageCaptions: ['Financial summary at a glance'],
   },
 ]
 

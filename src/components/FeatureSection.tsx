@@ -199,6 +199,85 @@ function OverviewMockup() {
 
 const mockups = [PropertyMockup, SubscriptionMockup, RealtorMockup, CustomerPortalMockup, OverviewMockup]
 
+/* ─── Real screenshot showcase (uses /public/img assets) ─── */
+
+function WindowFrame({
+  src,
+  caption,
+  className = '',
+}: {
+  src: string
+  caption?: string
+  className?: string
+}) {
+  return (
+    <div
+      className={`overflow-hidden rounded-2xl bg-white border border-slate-200/80 shadow-elevated ${className}`}
+    >
+      {/* Browser chrome */}
+      <div className="flex items-center gap-2 px-4 h-9 bg-slate-50/90 border-b border-slate-100">
+        <span className="flex gap-1.5 flex-shrink-0">
+          <span className="w-2.5 h-2.5 rounded-full bg-red-400/80" />
+          <span className="w-2.5 h-2.5 rounded-full bg-amber-400/80" />
+          <span className="w-2.5 h-2.5 rounded-full bg-emerald-400/80" />
+        </span>
+        {caption && (
+          <span className="ml-2 truncate text-[11px] font-semibold text-slate-400">
+            {caption}
+          </span>
+        )}
+      </div>
+      <img
+        src={src}
+        alt={caption ? `Terratrail — ${caption}` : 'Terratrail product screenshot'}
+        loading="lazy"
+        decoding="async"
+        className="block w-full h-auto"
+      />
+    </div>
+  )
+}
+
+function MockupShowcase({
+  images,
+  captions = [],
+  fallback: Fallback,
+}: {
+  images?: string[]
+  captions?: string[]
+  fallback?: () => JSX.Element
+}) {
+  // No screenshot supplied → fall back to the coded mockup component.
+  if (!images || images.length === 0) {
+    return Fallback ? <Fallback /> : null
+  }
+
+  // Single screenshot — clean floating frame with an ambient glow.
+  if (images.length === 1) {
+    return (
+      <div className="relative mx-auto w-full max-w-[440px]">
+        <div className="pointer-events-none absolute -inset-6 -z-10 rounded-[40px] bg-gradient-to-tr from-brand-blue/15 via-brand-indigo/10 to-transparent blur-2xl" />
+        <WindowFrame src={images[0]} caption={captions[0]} />
+      </div>
+    )
+  }
+
+  // Two screenshots — layered "deck" that fans apart on hover, no distortion.
+  return (
+    <div className="group relative mx-auto w-full max-w-[400px] pb-12 pr-8">
+      <div className="pointer-events-none absolute -inset-6 -z-10 rounded-[40px] bg-gradient-to-tr from-brand-blue/15 via-brand-indigo/10 to-transparent blur-2xl" />
+      {/* Back card */}
+      <div className="absolute inset-x-0 top-0 z-0 origin-bottom-left rotate-[3deg] translate-x-7 translate-y-10 transition-transform duration-500 ease-out group-hover:translate-x-10 group-hover:translate-y-14 group-hover:rotate-[4deg]">
+        <WindowFrame src={images[1]} caption={captions[1]} className="opacity-95" />
+      </div>
+      {/* Front card */}
+      <div className="relative z-10 transition-transform duration-500 ease-out group-hover:-translate-y-1">
+        <WindowFrame src={images[0]} caption={captions[0]} />
+      </div>
+    </div>
+  )
+}
+
 export function FeatureSection() {
   return (
     <section id="features" className="py-20 md:py-32 bg-white px-4 sm:px-6 lg:px-8">
@@ -223,7 +302,6 @@ export function FeatureSection() {
         {/* Feature rows */}
         <div className="space-y-24 md:space-y-32">
           {features.map((feature, index) => {
-            const Mockup = mockups[index]
             const isRight = feature.imagePosition === 'right'
 
             return (
@@ -273,9 +351,13 @@ export function FeatureSection() {
                   <motion.div
                     whileHover={{ y: -6 }}
                     transition={{ duration: 0.3 }}
-                    className="flex justify-center lg:justify-start"
+                    className="flex justify-center"
                   >
-                    <Mockup />
+                    <MockupShowcase
+                      images={feature.images}
+                      captions={feature.imageCaptions}
+                      fallback={mockups[index]}
+                    />
                   </motion.div>
 
                 </div>
