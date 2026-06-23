@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Gothic A1', 'system-ui', 'sans-serif'],
+        sans: ['Space Grotesk', 'Inter', 'system-ui', 'sans-serif'],
       },
       colors: {
         navy: {
