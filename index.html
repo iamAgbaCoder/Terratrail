@@ -6,7 +6,9 @@
     <meta name="theme-color" content="#0A1F5C" />
 
     <!-- Primary SEO -->
-    <title>TerraTrail — Land Sales Operations Platform for Nigerian Real Estate</title>
+    <title>
+      TerraTrail — Land Sales Operations Platform for Nigerian Real Estate
+    </title>
     <meta
       name="description"
       content="TerraTrail shows you exactly where money is coming in, which customers are falling behind, and which plots are still available — without opening a single spreadsheet."
@@ -20,30 +22,41 @@
     <link rel="canonical" href="https://terratrail.app/" />
 
     <!-- Icons -->
-    <link rel="icon" type="image/png" href="/icon-logo.png" />
-    <link rel="apple-touch-icon" href="/icon-logo.png" />
+    <link rel="icon" type="image/png" href="/icon-logo-white.png" />
+    <link rel="apple-touch-icon" href="/icon-logo-white.png" />
 
     <!-- Open Graph / Facebook / WhatsApp / LinkedIn link previews -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="TerraTrail" />
     <meta property="og:url" content="https://terratrail.app/" />
-    <meta property="og:title" content="TerraTrail — The operations stack your land sales business actually needs" />
+    <meta
+      property="og:title"
+      content="TerraTrail — The operations stack your land sales business actually needs"
+    />
     <meta
       property="og:description"
       content="See exactly where money is coming in, which customers are falling behind, and which plots are still available — without opening a single spreadsheet."
     />
-    <meta property="og:image" content="https://terratrail.app/logo.png" />
-    <meta property="og:image:alt" content="TerraTrail logo" />
+    <meta property="og:image" content="https://terratrail.app/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="TerraTrail — Land Sales Operations Platform"
+    />
     <meta property="og:locale" content="en_NG" />
 
     <!-- Twitter / X link previews -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="TerraTrail — Land Sales Operations Platform" />
+    <meta
+      name="twitter:title"
+      content="TerraTrail — Land Sales Operations Platform"
+    />
     <meta
       name="twitter:description"
       content="See exactly where money is coming in, which customers are falling behind, and which plots are still available — without opening a single spreadsheet."
     />
-    <meta name="twitter:image" content="https://terratrail.app/logo.png" />
+    <meta name="twitter:image" content="https://terratrail.app/og-image.png" />
 
     <!-- Structured data for rich search results -->
     <script type="application/ld+json">
@@ -93,7 +106,9 @@
         justify-content: center;
         gap: 22px;
         background: #ffffff;
-        transition: opacity 0.45s ease, visibility 0.45s ease;
+        transition:
+          opacity 0.45s ease,
+          visibility 0.45s ease;
       }
       #app-preloader.is-hidden {
         opacity: 0;
@@ -121,16 +136,29 @@
         animation: preloader-slide 1.1s ease-in-out infinite;
       }
       @keyframes preloader-pulse {
-        0%, 100% { transform: scale(1); opacity: 1; }
-        50% { transform: scale(0.92); opacity: 0.6; }
+        0%,
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        50% {
+          transform: scale(0.92);
+          opacity: 0.6;
+        }
       }
       @keyframes preloader-slide {
-        0% { transform: translateX(-120%); }
-        100% { transform: translateX(360%); }
+        0% {
+          transform: translateX(-120%);
+        }
+        100% {
+          transform: translateX(360%);
+        }
       }
       @media (prefers-reduced-motion: reduce) {
         #app-preloader img,
-        #app-preloader .preloader-bar span { animation: none; }
+        #app-preloader .preloader-bar span {
+          animation: none;
+        }
       }
     </style>
   </head>

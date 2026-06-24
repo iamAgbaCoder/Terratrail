@@ -29,21 +29,34 @@ export interface Testimonial {
   avatar: string
 }
 
+export type BillingCycle = 'quarterly' | 'biannually' | 'annually'
+
 export interface PricingPrice {
   quarterly: number
+  biannually: number
   annually: number
 }
 
 export interface PricingPlan {
   id: string
   name: string
+  /** Short positioning line, e.g. "Solo agents, small teams". */
+  tagline: string
   price: PricingPrice
   currency: string
-  periodLabel: string
   description: string
   features: string[]
   cta: string
   highlighted: boolean
+  /** Top tier with no public price — renders "Contact Sales". */
+  contactSales?: boolean
+}
+
+/** A single row in the dynamic plan-comparison table. */
+export interface ComparisonRow {
+  feature: string
+  /** One entry per plan, in the same order as `pricingPlans`. */
+  values: (boolean | string)[]
 }
 
 export interface FAQItem {
