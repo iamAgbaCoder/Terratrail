@@ -1,4 +1,4 @@
-import { OpsCard, Feature, Testimonial, PricingPlan, FAQItem } from '@types/index'
+import { OpsCard, Feature, Testimonial, PricingPlan, FAQItem } from '@/types/index'
 
 export const opsCards: OpsCard[] = [
   {

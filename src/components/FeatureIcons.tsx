@@ -1,5 +1,12 @@
 import { motion } from 'framer-motion'
-import { featureIcons } from '@data/content'
+
+const featureIcons = [
+  { id: 'properties', icon: '🏢', label: 'Property Management' },
+  { id: 'tracking', icon: '🧾', label: 'Payment Tracking' },
+  { id: 'realtor', icon: '🤝', label: 'Commission Tracking' },
+  { id: 'portal', icon: '👤', label: 'Customer Portal' },
+  { id: 'revenue', icon: '📈', label: 'Revenue Intelligence' },
+]
 
 export function FeatureIcons() {
   const containerVariants = {

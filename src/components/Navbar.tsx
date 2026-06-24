@@ -93,13 +93,13 @@ export function Navbar() {
           {/* Desktop CTAs */}
           <div className="hidden md:flex items-center gap-2 flex-shrink-0">
             <a
-              href="#signin"
+              href="https://dashboard.terratrail.app/auth/sign-in"
               className="px-4 py-2 text-[13px] font-bold text-navy-900 rounded-full hover:bg-slate-900/[0.05] transition-colors"
             >
               Sign In
             </a>
             <a
-              href="#get-started"
+              href="https://dashboard.terratrail.app/auth/sign-up"
               className="px-4 py-2 text-[13px] font-bold text-white bg-navy-900 rounded-full hover:bg-navy-800 transition-all duration-250 shadow-soft hover:shadow-card"
             >
               Get Started
@@ -151,14 +151,14 @@ export function Navbar() {
               </nav>
               <div className="grid grid-cols-2 gap-2 pt-2.5 mt-1.5 border-t border-slate-200/70">
                 <a
-                  href="#signin"
+                  href="https://dashboard.terratrail.app/auth/sign-in"
                   onClick={closeMobile}
                   className="py-3 text-center text-[14px] font-bold text-navy-900 border border-slate-200 rounded-2xl hover:bg-slate-50 transition-colors"
                 >
                   Sign In
                 </a>
                 <a
-                  href="#get-started"
+                  href="https://dashboard.terratrail.app/auth/sign-up"
                   onClick={closeMobile}
                   className="py-3 text-center text-[14px] font-bold text-white bg-navy-900 rounded-2xl hover:bg-navy-800 transition-colors"
                 >

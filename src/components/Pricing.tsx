@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { pricingPlans } from '@data/content'
-import { PricingPlan } from '@types/index'
+import { PricingPlan } from '@/types/index'
 
 type Cycle = 'quarterly' | 'annually'
 
