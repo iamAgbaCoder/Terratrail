@@ -6,7 +6,7 @@ export function FAQ() {
   const [openId, setOpenId] = useState<string | null>(null)
 
   return (
-    <section className="py-20 md:py-32 bg-white px-4 sm:px-6 lg:px-8">
+    <section id="faq" className="py-20 md:py-32 bg-white px-4 sm:px-6 lg:px-8">
       <div className="max-w-3xl mx-auto">
 
         {/* Header */}

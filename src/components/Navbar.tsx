@@ -1,11 +1,19 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, MouseEvent } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { navigate } from '@/router'
 
 const navLinks = [
   { label: 'Features', href: '#features' },
   { label: 'Pricing', href: '#pricing' },
-  { label: 'Company', href: '#company' },
+  { label: 'Company', href: '/about' },
 ]
+
+/** Intercept internal links for SPA navigation; allow modified clicks through. */
+function handleNav(e: MouseEvent<HTMLAnchorElement>, href: string) {
+  if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return
+  e.preventDefault()
+  navigate(href)
+}
 
 const spring = { type: 'spring', stiffness: 380, damping: 34, mass: 0.9 } as const
 
@@ -64,7 +72,10 @@ export function Navbar() {
           {/* Logo */}
           <a
             href="/"
-            onClick={closeMobile}
+            onClick={(e) => {
+              closeMobile()
+              handleNav(e, '/')
+            }}
             className="flex items-center gap-2 pl-1.5 group flex-shrink-0"
           >
             <img
@@ -83,6 +94,7 @@ export function Navbar() {
               <a
                 key={link.label}
                 href={link.href}
+                onClick={(e) => handleNav(e, link.href)}
                 className="px-4 py-2 text-[14px] font-semibold text-slate-500 hover:text-navy-900 rounded-full hover:bg-slate-900/[0.05] transition-all duration-200"
               >
                 {link.label}
@@ -140,7 +152,10 @@ export function Navbar() {
                   <motion.a
                     key={link.label}
                     href={link.href}
-                    onClick={closeMobile}
+                    onClick={(e) => {
+                      closeMobile()
+                      handleNav(e, link.href)
+                    }}
                     initial={{ opacity: 0, y: -6 }}
                     animate={{ opacity: 1, y: 0, transition: { delay: 0.06 + i * 0.04 } }}
                     className="flex items-center px-4 py-3 text-[15px] font-semibold text-slate-700 hover:text-navy-900 hover:bg-slate-900/[0.05] rounded-2xl transition-colors"

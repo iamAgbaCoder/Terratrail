@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { navigate } from '@/router'
 
 export function Hero() {
   const container = {
@@ -59,7 +60,11 @@ export function Hero() {
             <motion.a
               whileHover={{ scale: 1.04, y: -2 }}
               whileTap={{ scale: 0.97 }}
-              href="#book-demo"
+              href="/contact"
+              onClick={(e) => {
+                e.preventDefault()
+                navigate('/contact')
+              }}
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 border-2 border-slate-200 text-navy-900 font-bold text-[15px] rounded-xl hover:border-navy-900/30 hover:bg-white transition-all"
             >
               <span className="material-icons-round text-[18px]">play_circle</span>

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { pricingPlans, comparisonRows } from '@data/content'
 import { PricingPlan, BillingCycle } from '@/types/index'
+import { Link } from '@/router'
 
 const CYCLES: { id: BillingCycle; label: string; period: string }[] = [
   { id: 'quarterly', label: 'Pay Quarterly', period: '/quarter' },
@@ -101,15 +102,29 @@ function PlanCard({ plan, cycle }: { plan: PricingPlan; cycle: BillingCycle }) {
         </div>
 
         {/* CTA */}
-        <button
-          className={`w-full py-2.5 rounded-xl font-bold text-[14px] mb-6 transition-all duration-250 ${
-            featured
-              ? 'bg-white text-navy-900 hover:bg-blue-50'
-              : 'border-2 border-slate-200 text-slate-700 hover:border-navy-900 hover:bg-navy-900 hover:text-white'
-          }`}
-        >
-          {plan.cta}
-        </button>
+        {plan.contactSales ? (
+          <Link
+            to="/contact"
+            className={`block w-full text-center py-2.5 rounded-xl font-bold text-[14px] mb-6 transition-all duration-250 ${
+              featured
+                ? 'bg-white text-navy-900 hover:bg-blue-50'
+                : 'border-2 border-slate-200 text-slate-700 hover:border-navy-900 hover:bg-navy-900 hover:text-white'
+            }`}
+          >
+            {plan.cta}
+          </Link>
+        ) : (
+          <a
+            href="https://dashboard.terratrail.app/auth/sign-up"
+            className={`block w-full text-center py-2.5 rounded-xl font-bold text-[14px] mb-6 transition-all duration-250 ${
+              featured
+                ? 'bg-white text-navy-900 hover:bg-blue-50'
+                : 'border-2 border-slate-200 text-slate-700 hover:border-navy-900 hover:bg-navy-900 hover:text-white'
+            }`}
+          >
+            {plan.cta}
+          </a>
+        )}
 
         {/* Feature list */}
         <ul className="space-y-2.5 flex-1">

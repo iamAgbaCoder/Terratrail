@@ -1,10 +1,32 @@
 import { motion } from 'framer-motion'
+import { Link } from '@/router'
 
-const links = {
-  Product: ['Features', 'Pricing', 'Integrations', 'Security', 'Changelog'],
-  Company: ['About Us', 'Blog', 'Careers', 'Contact'],
-  Contact: ['hello@terratrail.app', 'Twitter / X', 'LinkedIn', 'Instagram'],
-}
+const linkGroups: { title: string; items: { label: string; to: string }[] }[] = [
+  {
+    title: 'Product',
+    items: [
+      { label: 'Features', to: '#features' },
+      { label: 'Platform', to: '#platform' },
+      { label: 'Pricing', to: '#pricing' },
+      { label: 'FAQ', to: '#faq' },
+    ],
+  },
+  {
+    title: 'Company',
+    items: [
+      { label: 'About Us', to: '/about' },
+      { label: 'Contact', to: '/contact' },
+      { label: 'Get Started', to: 'https://dashboard.terratrail.app/auth/sign-up' },
+    ],
+  },
+  {
+    title: 'Legal',
+    items: [
+      { label: 'Privacy Policy', to: '/privacy' },
+      { label: 'Terms & Conditions', to: '/terms' },
+    ],
+  },
+]
 
 const socials: { label: string; href: string; path: JSX.Element }[] = [
   {
@@ -86,18 +108,18 @@ export function Footer() {
           </div>
 
           {/* Link columns */}
-          {Object.entries(links).map(([section, items]) => (
-            <div key={section}>
-              <h4 className="text-[12px] font-black text-white/30 uppercase tracking-[0.12em] mb-4">{section}</h4>
+          {linkGroups.map((group) => (
+            <div key={group.title}>
+              <h4 className="text-[12px] font-black text-white/30 uppercase tracking-[0.12em] mb-4">{group.title}</h4>
               <ul className="space-y-3">
-                {items.map((item) => (
-                  <li key={item}>
-                    <a
-                      href="#"
+                {group.items.map((item) => (
+                  <li key={item.label}>
+                    <Link
+                      to={item.to}
                       className="text-[13px] text-white/55 hover:text-white transition-colors font-medium"
                     >
-                      {item}
-                    </a>
+                      {item.label}
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -111,10 +133,14 @@ export function Footer() {
             © {year} Terratrail. All rights reserved.
           </p>
           <div className="flex items-center gap-5">
-            {['Privacy Policy', 'Terms of Service', 'Cookie Policy'].map((item) => (
-              <a key={item} href="#" className="text-[12px] text-white/30 hover:text-white/60 transition-colors">
-                {item}
-              </a>
+            {[
+              { label: 'Privacy Policy', to: '/privacy' },
+              { label: 'Terms & Conditions', to: '/terms' },
+              { label: 'Contact', to: '/contact' },
+            ].map((item) => (
+              <Link key={item.label} to={item.to} className="text-[12px] text-white/30 hover:text-white/60 transition-colors">
+                {item.label}
+              </Link>
             ))}
           </div>
         </div>

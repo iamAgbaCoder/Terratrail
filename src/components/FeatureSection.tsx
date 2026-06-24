@@ -337,14 +337,15 @@ export function FeatureSection() {
                       {feature.description}
                     </p>
 
-                    <motion.button
+                    <motion.a
+                      href="https://dashboard.terratrail.app/auth/sign-up"
                       whileHover={{ scale: 1.03, y: -1 }}
                       whileTap={{ scale: 0.97 }}
                       className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-[14px] bg-navy-900 text-white hover:bg-navy-800 shadow-soft hover:shadow-card transition-all duration-250"
                     >
                       {feature.buttonText}
                       <span className="material-icons-round text-[16px]">arrow_forward</span>
-                    </motion.button>
+                    </motion.a>
                   </div>
 
                   {/* Mockup side */}
