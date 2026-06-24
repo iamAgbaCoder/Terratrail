@@ -1,6 +1,7 @@
 import {
   Navbar,
   Hero,
+  OpsShowcase,
   FeatureSection,
   Testimonials,
   Pricing,
@@ -15,6 +16,7 @@ export function HomePage() {
       <Navbar />
       <main>
         <Hero />
+        <OpsShowcase />
         <FeatureSection />
         <Testimonials />
         <Pricing />

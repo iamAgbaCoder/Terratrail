@@ -1,5 +1,6 @@
 export { Navbar } from './Navbar'
 export { Hero } from './Hero'
+export { OpsShowcase } from './OpsShowcase'
 export { FeatureSection } from './FeatureSection'
 export { Testimonials } from './Testimonials'
 export { Pricing } from './Pricing'
