@@ -46,7 +46,7 @@ export function Hero() {
           {/* Primary CTAs */}
           <motion.div
             variants={item}
-            className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-14 md:mb-16"
+            className="flex flex-col sm:flex-row items-center justify-center gap-3"
           >
             <motion.a
               whileHover={{ scale: 1.04, y: -2 }}
@@ -71,42 +71,6 @@ export function Hero() {
               Book a Demo
             </motion.a>
           </motion.div>
-        </motion.div>
-
-        {/* Product screenshot — the live overview dashboard */}
-        <motion.div
-          initial={{ opacity: 0, y: 48 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
-          className="relative mx-auto max-w-5xl"
-        >
-          {/* Ambient glow */}
-          <div className="pointer-events-none absolute -inset-x-10 -top-10 -bottom-6 -z-10 rounded-[48px] bg-gradient-to-tr from-brand-blue/15 via-brand-indigo/10 to-transparent blur-3xl" />
-
-          <div className="rounded-2xl md:rounded-[20px] overflow-hidden border border-slate-200/80 bg-white shadow-elevated">
-            {/* Browser chrome */}
-            <div className="flex items-center gap-2 px-4 h-10 bg-slate-50/90 border-b border-slate-100">
-              <span className="flex gap-1.5">
-                <span className="w-2.5 h-2.5 rounded-full bg-red-400/80" />
-                <span className="w-2.5 h-2.5 rounded-full bg-amber-400/80" />
-                <span className="w-2.5 h-2.5 rounded-full bg-emerald-400/80" />
-              </span>
-              <span className="mx-auto hidden sm:flex items-center gap-1.5 text-[11px] font-semibold text-slate-400 bg-white border border-slate-200/80 rounded-md px-3 py-0.5">
-                <span className="material-icons-round text-[12px]">lock</span>
-                dashboard.terratrail.app/overview
-              </span>
-            </div>
-            <img
-              src="/img/dashboard.png"
-              alt="Terratrail overview dashboard showing active subscriptions, customers and pending payments"
-              width={1064}
-              height={420}
-              loading="eager"
-              fetchPriority="high"
-              decoding="async"
-              className="block w-full h-auto"
-            />
-          </div>
         </motion.div>
       </div>
     </section>
