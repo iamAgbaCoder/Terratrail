@@ -5,7 +5,7 @@ import { PageLayout } from '@components/PageLayout'
 const channels = [
   { icon: 'mail', label: 'Email us', value: 'hello@terratrail.app', href: 'mailto:hello@terratrail.app' },
   { icon: 'support_agent', label: 'Sales & demos', value: 'sales@terratrail.app', href: 'mailto:sales@terratrail.app' },
-  { icon: 'chat', label: 'WhatsApp', value: 'Chat with us', href: 'https://wa.me/2348000000000' },
+  { icon: 'chat', label: 'WhatsApp', value: 'Chat with us', href: 'https://wa.me/2348147429341' },
 ]
 
 export function ContactPage() {
