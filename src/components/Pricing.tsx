@@ -169,31 +169,95 @@ function CompareCell({ value, featured }: { value: boolean | string; featured?: 
   return <span className={`text-[13px] font-bold ${featured ? 'text-navy-900' : 'text-slate-700'}`}>{value}</span>
 }
 
-export function Pricing() {
+/** The dynamic plan-comparison matrix — built straight from the data. */
+export function ComparisonTable() {
+  return (
+    <div className="overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-soft">
+      <table className="w-full min-w-[680px] border-collapse">
+        <thead>
+          <tr>
+            <th className="sticky left-0 z-10 bg-white text-left text-[13px] font-black text-slate-900 p-4 md:p-5 border-b border-slate-200">
+              Features
+            </th>
+            {pricingPlans.map((plan) => (
+              <th
+                key={plan.id}
+                className={`p-4 md:p-5 border-b text-center align-bottom ${
+                  plan.highlighted ? 'border-brand-blue/40 bg-blue-50/50' : 'border-slate-200'
+                }`}
+              >
+                <span className={`block text-[14px] font-black ${plan.highlighted ? 'text-brand-blue' : 'text-slate-900'}`}>
+                  {plan.name}
+                </span>
+                <span className="block text-[11px] font-medium text-slate-400 mt-0.5">{plan.tagline}</span>
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {comparisonRows.map((row, ri) => (
+            <tr key={row.feature} className={ri % 2 === 1 ? 'bg-slate-50/60' : ''}>
+              <td
+                className={`sticky left-0 z-10 text-[13px] font-semibold text-slate-700 p-4 md:px-5 md:py-3.5 ${
+                  ri % 2 === 1 ? 'bg-slate-50/60' : 'bg-white'
+                }`}
+              >
+                {row.feature}
+              </td>
+              {row.values.map((v, vi) => (
+                <td
+                  key={vi}
+                  className={`text-center p-4 md:px-5 md:py-3.5 ${
+                    pricingPlans[vi]?.highlighted ? 'bg-blue-50/40' : ''
+                  }`}
+                >
+                  <CompareCell value={v} featured={pricingPlans[vi]?.highlighted} />
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  )
+}
+
+interface PricingProps {
+  /** Show the in-section heading. Off on the dedicated /pricing page (the page hero covers it). */
+  showHeader?: boolean
+  /** 'home' shows a link out to /pricing; 'full' renders the comparison table inline. */
+  variant?: 'home' | 'full'
+}
+
+export function Pricing({ showHeader = true, variant = 'home' }: PricingProps) {
   const [cycle, setCycle] = useState<BillingCycle>('quarterly')
-  const [showCompare, setShowCompare] = useState(false)
 
   return (
-    <section id="pricing" className="py-20 md:py-32 bg-slate-50 px-4 sm:px-6 lg:px-8">
+    <section
+      id="pricing"
+      className={`px-4 sm:px-6 lg:px-8 bg-slate-50 ${variant === 'full' ? 'py-14 md:py-16' : 'py-20 md:py-32'}`}
+    >
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-9"
-        >
-          <span className="inline-flex items-center gap-2 text-brand-blue text-[13px] font-bold tracking-wide mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-brand-blue inline-block"></span>Pricing
-          </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight mb-2">
-            Straightforward pricing.
-          </h2>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tight">
-            Built for <span className="text-gradient-blue">Nigerian businesses.</span>
-          </h2>
-        </motion.div>
+        {showHeader && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-9"
+          >
+            <span className="inline-flex items-center gap-2 text-brand-blue text-[13px] font-bold tracking-wide mb-4">
+              <span className="w-1.5 h-1.5 rounded-full bg-brand-blue inline-block"></span>Pricing
+            </span>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight mb-2">
+              Straightforward pricing.
+            </h2>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tight">
+              Built for <span className="text-gradient-blue">Nigerian businesses.</span>
+            </h2>
+          </motion.div>
+        )}
 
         {/* Billing cycle toggle */}
         <motion.div
@@ -238,84 +302,26 @@ export function Pricing() {
           ))}
         </motion.div>
 
-        {/* Compare-all toggle */}
-        <div className="flex justify-center mt-12">
-          <button
-            onClick={() => setShowCompare((v) => !v)}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white border border-slate-200 text-navy-900 font-bold text-[13.5px] shadow-soft hover:shadow-card transition-all"
-          >
-            {showCompare ? 'Hide full comparison' : 'Compare all plans'}
-            <motion.span
-              animate={{ rotate: showCompare ? 180 : 0 }}
-              transition={{ duration: 0.25 }}
-              className="material-icons-round text-[18px]"
+        {variant === 'home' ? (
+          /* Link out to the full pricing page with the comparison table */
+          <div className="flex justify-center mt-12">
+            <Link
+              to="/pricing"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white border border-slate-200 text-navy-900 font-bold text-[13.5px] shadow-soft hover:shadow-card transition-all"
             >
-              expand_more
-            </motion.span>
-          </button>
-        </div>
-
-        {/* Dynamic comparison matrix */}
-        <AnimatePresence initial={false}>
-          {showCompare && (
-            <motion.div
-              key="compare"
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-              className="overflow-hidden"
-            >
-              <div className="mt-8 overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-soft">
-                <table className="w-full min-w-[680px] border-collapse">
-                  <thead>
-                    <tr>
-                      <th className="sticky left-0 z-10 bg-white text-left text-[13px] font-black text-slate-900 p-4 md:p-5 border-b border-slate-200">
-                        Features
-                      </th>
-                      {pricingPlans.map((plan) => (
-                        <th
-                          key={plan.id}
-                          className={`p-4 md:p-5 border-b text-center align-bottom ${
-                            plan.highlighted ? 'border-brand-blue/40 bg-blue-50/50' : 'border-slate-200'
-                          }`}
-                        >
-                          <span className={`block text-[14px] font-black ${plan.highlighted ? 'text-brand-blue' : 'text-slate-900'}`}>
-                            {plan.name}
-                          </span>
-                          <span className="block text-[11px] font-medium text-slate-400 mt-0.5">{plan.tagline}</span>
-                        </th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {comparisonRows.map((row, ri) => (
-                      <tr key={row.feature} className={ri % 2 === 1 ? 'bg-slate-50/60' : ''}>
-                        <td
-                          className={`sticky left-0 z-10 text-[13px] font-semibold text-slate-700 p-4 md:px-5 md:py-3.5 ${
-                            ri % 2 === 1 ? 'bg-slate-50/60' : 'bg-white'
-                          }`}
-                        >
-                          {row.feature}
-                        </td>
-                        {row.values.map((v, vi) => (
-                          <td
-                            key={vi}
-                            className={`text-center p-4 md:px-5 md:py-3.5 ${
-                              pricingPlans[vi]?.highlighted ? 'bg-blue-50/40' : ''
-                            }`}
-                          >
-                            <CompareCell value={v} featured={pricingPlans[vi]?.highlighted} />
-                          </td>
-                        ))}
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+              Compare all plans
+              <span className="material-icons-round text-[18px]">arrow_forward</span>
+            </Link>
+          </div>
+        ) : (
+          /* Full comparison matrix, shown inline on the pricing page */
+          <div className="mt-14">
+            <h3 className="text-center text-xl sm:text-2xl font-black text-slate-900 tracking-tight mb-7">
+              Compare every plan
+            </h3>
+            <ComparisonTable />
+          </div>
+        )}
       </div>
     </section>
   )

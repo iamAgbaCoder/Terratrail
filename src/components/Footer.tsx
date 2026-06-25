@@ -7,7 +7,7 @@ const linkGroups: { title: string; items: { label: string; to: string }[] }[] = 
     items: [
       { label: 'Features', to: '#features' },
       { label: 'Platform', to: '#platform' },
-      { label: 'Pricing', to: '#pricing' },
+      { label: 'Pricing', to: '/pricing' },
       { label: 'FAQ', to: '#faq' },
     ],
   },

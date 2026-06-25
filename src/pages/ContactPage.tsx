@@ -19,7 +19,7 @@ export function ContactPage() {
     const message = String(data.get('message') || '')
     const company = String(data.get('company') || '')
     const body = encodeURIComponent(`${message}\n\n— ${name}${company ? `, ${company}` : ''}`)
-    const subject = encodeURIComponent(`New enquiry from ${name || 'TerraTrail website'}`)
+    const subject = encodeURIComponent(`New enquiry from ${name || 'Terratrail website'}`)
     window.location.href = `mailto:hello@terratrail.app?subject=${subject}&body=${body}`
     setSent(true)
   }
@@ -29,7 +29,7 @@ export function ContactPage() {
       eyebrow="Contact"
       title={
         <>
-          Let's get your estate <span className="text-gradient-blue">running on TerraTrail.</span>
+          Let's get your estate <span className="text-gradient-blue">running on Terratrail.</span>
         </>
       }
       subtitle="Questions, a demo request, or help choosing a plan — we usually reply within one business day."

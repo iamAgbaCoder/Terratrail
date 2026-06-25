@@ -3,7 +3,7 @@ import {
   Hero,
   OpsShowcase,
   FeatureSection,
-  Testimonials,
+  // Testimonials, // temporarily hidden
   Pricing,
   FAQ,
   CTASection,
@@ -18,7 +18,7 @@ export function HomePage() {
         <Hero />
         <OpsShowcase />
         <FeatureSection />
-        <Testimonials />
+        {/* <Testimonials /> temporarily hidden */}
         <Pricing />
         <FAQ />
         <CTASection />

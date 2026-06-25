@@ -28,7 +28,7 @@ export function Testimonials() {
             <span className="w-1.5 h-1.5 rounded-full bg-blue-400 inline-block"></span>Testimonials
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight tracking-tight max-w-xl mx-auto">
-            Real estate companies running smarter on TerraTrail
+            Real estate companies running smarter on Terratrail
           </h2>
         </motion.div>
 

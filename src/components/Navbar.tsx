@@ -4,7 +4,7 @@ import { navigate } from '@/router'
 
 const navLinks = [
   { label: 'Features', href: '#features' },
-  { label: 'Pricing', href: '#pricing' },
+  { label: 'Pricing', href: '/pricing' },
   { label: 'Company', href: '/about' },
 ]
 

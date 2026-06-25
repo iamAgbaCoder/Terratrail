@@ -4,8 +4,8 @@ const sections: LegalSection[] = [
   {
     heading: 'Introduction',
     body: [
-      'TerraTrail ("we", "us", "our") provides an operations platform for land sales and real estate businesses. This Privacy Policy explains how we collect, use, store, and protect your information when you use our website and application.',
-      'By using TerraTrail, you agree to the practices described in this policy. If you do not agree, please do not use the service.',
+      'Terratrail ("we", "us", "our") provides an operations platform for land sales and real estate businesses. This Privacy Policy explains how we collect, use, store, and protect your information when you use our website and application.',
+      'By using Terratrail, you agree to the practices described in this policy. If you do not agree, please do not use the service.',
     ],
   },
   {
@@ -28,7 +28,7 @@ const sections: LegalSection[] = [
     heading: 'Data sharing',
     body: [
       'We do not sell your data. We share information only with service providers that help us operate the platform (for example, payment processors and email/SMS providers), and only to the extent necessary to deliver the service.',
-      'We may disclose information where required by law or to protect the rights, property, or safety of TerraTrail, our users, or the public.',
+      'We may disclose information where required by law or to protect the rights, property, or safety of Terratrail, our users, or the public.',
     ],
   },
   {
@@ -63,7 +63,7 @@ export function PrivacyPage() {
     <PageLayout
       eyebrow="Legal"
       title="Privacy Policy"
-      subtitle="How we collect, use, and protect your information when you use TerraTrail."
+      subtitle="How we collect, use, and protect your information when you use Terratrail."
     >
       <LegalBody sections={sections} lastUpdated="1 June 2026" />
     </PageLayout>

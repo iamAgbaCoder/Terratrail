@@ -4,13 +4,13 @@ const sections: LegalSection[] = [
   {
     heading: 'Acceptance of terms',
     body: [
-      'These Terms & Conditions govern your access to and use of the TerraTrail platform. By creating an account or using the service, you agree to be bound by these terms on behalf of yourself and any business you represent.',
+      'These Terms & Conditions govern your access to and use of the Terratrail platform. By creating an account or using the service, you agree to be bound by these terms on behalf of yourself and any business you represent.',
     ],
   },
   {
     heading: 'The service',
     body: [
-      'TerraTrail provides software to manage properties, subscriptions, installment payments, site inspections, realtor commissions, and a customer self-service portal.',
+      'Terratrail provides software to manage properties, subscriptions, installment payments, site inspections, realtor commissions, and a customer self-service portal.',
       'We may add, change, or remove features over time to improve the platform. We will give reasonable notice of material changes that affect how you use the service.',
     ],
   },
@@ -32,21 +32,21 @@ const sections: LegalSection[] = [
   {
     heading: 'Acceptable use',
     body: [
-      'You may not use TerraTrail for any unlawful purpose, to upload malicious code, to attempt to gain unauthorized access to the platform, or to infringe the rights of others.',
+      'You may not use Terratrail for any unlawful purpose, to upload malicious code, to attempt to gain unauthorized access to the platform, or to infringe the rights of others.',
       'We may suspend or terminate accounts that violate these terms or that pose a risk to the platform or other users.',
     ],
   },
   {
     heading: 'Data ownership',
     body: [
-      'You retain ownership of the data you enter into TerraTrail. You grant us a limited license to process that data solely to provide the service.',
+      'You retain ownership of the data you enter into Terratrail. You grant us a limited license to process that data solely to provide the service.',
       'You can export your data at any time. Handling of personal data is described in our Privacy Policy.',
     ],
   },
   {
     heading: 'Limitation of liability',
     body: [
-      'The service is provided "as is". To the maximum extent permitted by law, TerraTrail is not liable for indirect, incidental, or consequential damages, or for loss of profits or data arising from your use of the service.',
+      'The service is provided "as is". To the maximum extent permitted by law, Terratrail is not liable for indirect, incidental, or consequential damages, or for loss of profits or data arising from your use of the service.',
     ],
   },
   {
@@ -66,7 +66,7 @@ export function TermsPage() {
     <PageLayout
       eyebrow="Legal"
       title="Terms & Conditions"
-      subtitle="The rules for using TerraTrail. Please read them carefully."
+      subtitle="The rules for using Terratrail. Please read them carefully."
     >
       <LegalBody sections={sections} lastUpdated="1 June 2026" />
     </PageLayout>

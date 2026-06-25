@@ -95,7 +95,7 @@ export const testimonials: Testimonial[] = [
   {
     id: 'testimonial-1',
     quote:
-      'Before TerraTrail, I had three Excel files, a WhatsApp group, and a prayer. Now I can see exactly what every customer owes, which plots are taken, and what my sales reps have earned — all in one place.',
+      'Before Terratrail, I had three Excel files, a WhatsApp group, and a prayer. Now I can see exactly what every customer owes, which plots are taken, and what my sales reps have earned — all in one place.',
     author: 'Adeyemi Ogunwale',
     role: 'MD, Vertical Cities — Lagos',
     avatar: 'AO',
@@ -103,7 +103,7 @@ export const testimonials: Testimonial[] = [
   {
     id: 'testimonial-2',
     quote:
-      "Our sales reps used to argue every month about commission calculations. With TerraTrail the system calculates it automatically when a customer pays. No disputes, no manual work. It's saved us hours every week.",
+      "Our sales reps used to argue every month about commission calculations. With Terratrail the system calculates it automatically when a customer pays. No disputes, no manual work. It's saved us hours every week.",
     author: 'Funke Nwachukwu',
     role: 'Director of Ops, Lagos Prop Partners',
     avatar: 'FN',
@@ -225,15 +225,15 @@ export const comparisonRows: ComparisonRow[] = [
 export const faqItems: FAQItem[] = [
   {
     id: 'faq-1',
-    question: 'What is TerraTrail?',
+    question: 'What is Terratrail?',
     answer:
-      'TerraTrail is an operations platform built specifically for Nigerian land sales companies. It helps you manage properties, track subscriptions, automate payment reminders, run a realtor network, and give customers a self-service portal — all without spreadsheets.',
+      'Terratrail is an operations platform built specifically for Nigerian land sales companies. It helps you manage properties, track subscriptions, automate payment reminders, run a realtor network, and give customers a self-service portal — all without spreadsheets.',
   },
   {
     id: 'faq-2',
     question: 'Does Terratrail work with any estate company?',
     answer:
-      "Yes! TerraTrail is designed for any real estate business selling land or property on installment plans. Whether you're a startup developer or an established estate company, TerraTrail scales with your business.",
+      "Yes! Terratrail is designed for any real estate business selling land or property on installment plans. Whether you're a startup developer or an established estate company, Terratrail scales with your business.",
   },
   {
     id: 'faq-3',
@@ -243,15 +243,15 @@ export const faqItems: FAQItem[] = [
   },
   {
     id: 'faq-4',
-    question: 'How does TerraTrail handle installment payments?',
+    question: 'How does Terratrail handle installment payments?',
     answer:
       "Every subscription auto-generates a full installment schedule. When customers make payments, they upload receipts which your team approves. Automated email/SMS reminders go out 7 days before, 2 days before, and on the due date. You'll never chase a payment manually again.",
   },
   {
     id: 'faq-5',
-    question: 'How does TerraTrail support outright payments?',
+    question: 'How does Terratrail support outright payments?',
     answer:
-      'Outright payments are supported as a single-payment subscription plan. The customer completes one payment, and TerraTrail marks the subscription as complete — no installment schedule needed.',
+      'Outright payments are supported as a single-payment subscription plan. The customer completes one payment, and Terratrail marks the subscription as complete — no installment schedule needed.',
   },
   {
     id: 'faq-6',

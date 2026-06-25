@@ -22,7 +22,7 @@ export function CTASection() {
             Stop managing your estate on{' '}
             <CircledText color="#60a5fa">WhatsApp.</CircledText>
             <br className="hidden sm:block" />{' '}
-            Start on TerraTrail.
+            Start on Terratrail.
           </h2>
 
           <p className="text-[15px] sm:text-[17px] text-white/50 mb-9 sm:mb-12 max-w-lg mx-auto leading-relaxed">

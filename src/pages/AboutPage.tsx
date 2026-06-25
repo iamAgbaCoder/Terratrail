@@ -31,14 +31,14 @@ const stats = [
 export function AboutPage() {
   return (
     <PageLayout
-      eyebrow="About TerraTrail"
+      eyebrow="About Terratrail"
       title={
         <>
           We're building the operating system for{' '}
           <span className="text-gradient-blue">Nigerian land sales.</span>
         </>
       }
-      subtitle="TerraTrail started with a simple frustration: estate businesses were running millions of naira in sales on Excel files and group chats. We thought they deserved better."
+      subtitle="Terratrail started with a simple frustration: estate businesses were running millions of naira in sales on Excel files and group chats. We thought they deserved better."
     >
       {/* Story */}
       <section className="px-4 sm:px-6 lg:px-8 py-14 md:py-20">
@@ -50,7 +50,7 @@ export function AboutPage() {
             disputes drag on for weeks, and customers call daily just to ask how much they've paid.
           </p>
           <p className="text-[16px] sm:text-[17px] text-slate-600 leading-relaxed">
-            TerraTrail brings all of it into one place — properties, installment subscriptions,
+            Terratrail brings all of it into one place — properties, installment subscriptions,
             automated reminders, a self-service customer portal, and a realtor network that pays
             itself out correctly, every time. No more spreadsheets. No more guesswork.
           </p>
