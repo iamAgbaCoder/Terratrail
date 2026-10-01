@@ -21,6 +21,7 @@ import { build, preview } from 'vite'
 import { chromium } from 'playwright'
 import { mkdir, rm, writeFile } from 'node:fs/promises'
 import { existsSync, readdirSync } from 'node:fs'
+import os from 'node:os'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -28,18 +29,36 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const root = path.resolve(__dirname, '..')
 
 // Playwright's default headless launch uses a lightweight "headless shell"
-// binary, which hangs on its devtools-pipe handshake in some sandboxed
-// environments. If the full Chromium build is present (installed alongside
-// the shell by `playwright install chromium`), launch that one instead.
+// binary. It hangs on its devtools-pipe handshake in some sandboxed
+// environments, AND — more importantly — snapshots it produces are not
+// byte-identical to the full Chromium build's output (different animation/
+// paint timing for framer-motion's viewport-triggered elements), which
+// caused CI's regenerated pages to drift from locally-generated ones that
+// used the full binary. So: always use the full build, on every platform,
+// for deterministic output across machines.
+function defaultPlaywrightCacheDir() {
+  if (process.env.PLAYWRIGHT_BROWSERS_PATH) return process.env.PLAYWRIGHT_BROWSERS_PATH
+  if (process.platform === 'win32') return path.join(process.env.LOCALAPPDATA ?? '', 'ms-playwright')
+  if (process.platform === 'darwin') return path.join(os.homedir(), 'Library', 'Caches', 'ms-playwright')
+  return path.join(os.homedir(), '.cache', 'ms-playwright')
+}
+
+const FULL_CHROMIUM_RELATIVE_PATHS = [
+  ['chrome-win64', 'chrome.exe'],
+  ['chrome-linux64', 'chrome'],
+  ['chrome-linux', 'chrome'],
+  ['chrome-mac', 'Chromium.app', 'Contents', 'MacOS', 'Chromium'],
+]
+
 function findFullChromiumExecutable() {
-  const cacheDir = path.join(
-    process.env.PLAYWRIGHT_BROWSERS_PATH || path.join(process.env.LOCALAPPDATA ?? '', 'ms-playwright'),
-  )
+  const cacheDir = defaultPlaywrightCacheDir()
   if (!existsSync(cacheDir)) return undefined
   const candidates = readdirSync(cacheDir).filter((name) => /^chromium-\d+$/.test(name))
   for (const dir of candidates) {
-    const exe = path.join(cacheDir, dir, 'chrome-win64', 'chrome.exe')
-    if (existsSync(exe)) return exe
+    for (const relativeParts of FULL_CHROMIUM_RELATIVE_PATHS) {
+      const exe = path.join(cacheDir, dir, ...relativeParts)
+      if (existsSync(exe)) return exe
+    }
   }
   return undefined
 }
@@ -62,9 +81,14 @@ async function main() {
   const base = `http://localhost:${PORT}`
 
   const fullChromiumPath = findFullChromiumExecutable()
-  const browser = await chromium.launch(
-    fullChromiumPath ? { executablePath: fullChromiumPath } : undefined,
-  )
+  if (!fullChromiumPath) {
+    throw new Error(
+      'Full Chromium build not found in the Playwright cache. Run `npx playwright install chromium` ' +
+        '(not just the headless-shell variant) — using the shell instead produces non-deterministic ' +
+        'output and will cause the CI drift check to fail.',
+    )
+  }
+  const browser = await chromium.launch({ executablePath: fullChromiumPath })
   const page = await browser.newPage()
 
   for (const route of ROUTES) {
