@@ -1,0 +1,71 @@
+name: CI
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+    branches: [main]
+
+jobs:
+  typecheck-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Type check
+        run: pnpm exec tsc --noEmit
+
+      - name: Build
+        run: pnpm run build
+
+  prerender-drift-check:
+    needs: typecheck-and-build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install a throwaway Chromium for prerendering
+        run: npx --yes playwright install --with-deps chromium
+
+      - name: Regenerate prerendered pages
+        run: node scripts/prerender.mjs
+
+      - name: Fail if committed snapshots are stale
+        run: |
+          if ! git diff --quiet -- public/about public/pricing public/privacy public/terms public/contact; then
+            echo "::error::Prerendered pages in public/ are out of date with the current page content."
+            echo "Run: node scripts/prerender.mjs"
+            echo "then commit the regenerated public/<route>/index.html files."
+            git diff --stat -- public/about public/pricing public/privacy public/terms public/contact
+            exit 1
+          fi

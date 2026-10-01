@@ -11,7 +11,7 @@
     </title>
     <meta
       name="description"
-      content="Terratrail shows you exactly where money is coming in, which customers are falling behind, and which plots are still available — without opening a single spreadsheet."
+      content="See exactly where money is coming in, which customers are falling behind, and which plots are still available — without opening a single spreadsheet."
     />
     <meta
       name="keywords"
@@ -171,7 +171,17 @@
       <div class="preloader-bar"><span></span></div>
     </div>
 
-    <div id="root"></div>
+    <!-- Static fallback content for crawlers that don't execute JavaScript
+         (Bing's auditor, most AI bots). createRoot().render() in main.tsx
+         fully replaces this on mount, so it's invisible to real browsers —
+         keep this text in sync with src/components/Hero.tsx's <h1>/<p>. -->
+    <div id="root">
+      <h1>The operations stack your land sales business actually needs</h1>
+      <p>
+        Terratrail shows you exactly where money is coming in, which customers are falling
+        behind, and which plots are still available without opening a single spreadsheet.
+      </p>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
