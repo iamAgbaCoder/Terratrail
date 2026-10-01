@@ -5,6 +5,7 @@ import { FAQ } from '@components/FAQ'
 import { CTASection } from '@components/CTASection'
 import { pricingPlans } from '@data/content'
 import { PricingPlan } from '@/types/index'
+import { useDocumentMeta } from '@/useDocumentMeta'
 
 const cycleLabels: { key: 'quarterly' | 'biannually' | 'annually'; label: string }[] = [
   { key: 'quarterly', label: 'Quarterly' },
@@ -84,6 +85,10 @@ function PlanDetails() {
 }
 
 export function PricingPage() {
+  useDocumentMeta(
+    'Pricing — Terratrail',
+    'Start free, then pick the plan that matches your portfolio. Pay quarterly, biannually, or annually — the longer the cycle, the more you save.',
+  )
   return (
     <PageLayout
       eyebrow="Pricing"
