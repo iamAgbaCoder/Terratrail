@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { PageLayout } from '@components/PageLayout'
 import { CircledText } from '@components/CircledText'
 import { Link } from '@/router'
+import { useDocumentMeta } from '@/useDocumentMeta'
 
 const values = [
   {
@@ -29,6 +30,10 @@ const stats = [
 ]
 
 export function AboutPage() {
+  useDocumentMeta(
+    "About Terratrail — The operating system for Nigerian land sales",
+    "Terratrail started with a simple frustration: estate businesses were running millions of naira in sales on Excel files and group chats. We thought they deserved better.",
+  )
   return (
     <PageLayout
       eyebrow="About Terratrail"

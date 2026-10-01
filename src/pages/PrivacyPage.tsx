@@ -1,4 +1,5 @@
 import { PageLayout, LegalBody, LegalSection } from '@components/PageLayout'
+import { useDocumentMeta } from '@/useDocumentMeta'
 
 const highlights = [
   { icon: 'verified_user', label: 'NDPR Compliant' },
@@ -129,6 +130,10 @@ const sections: LegalSection[] = [
 ]
 
 export function PrivacyPage() {
+  useDocumentMeta(
+    'Privacy Policy — Terratrail',
+    'How we collect, use, and protect your information when you use Terratrail. NDPR compliant.',
+  )
   return (
     <PageLayout
       eyebrow="Legal"

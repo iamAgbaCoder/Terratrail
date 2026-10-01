@@ -1,0 +1,18 @@
+# Terratrail
+
+> Terratrail is an operations platform for Nigerian land sales and real estate
+> businesses. It tracks properties, installment-based subscriptions, payment
+> reminders, realtor commissions, and gives customers a self-service portal —
+> replacing spreadsheets and group chats for estate operators.
+
+Terratrail is registered as compliant with the Nigeria Data Protection
+Regulation (NDPR) 2019, issued under the Nigeria Data Protection Act.
+
+## Pages
+
+- [Home](https://terratrail.app/): Product overview — installment tracking, payment reminders, realtor commissions, customer portal.
+- [Pricing](https://terratrail.app/pricing): Plans and pricing, billed quarterly, biannually, or annually. A Free plan is available.
+- [About](https://terratrail.app/about): Why Terratrail was built and who it serves.
+- [Contact](https://terratrail.app/contact): How to reach the Terratrail team for sales, support, or demos.
+- [Privacy Policy](https://terratrail.app/privacy): How Terratrail collects, uses, and protects personal data, including NDPR-specific data subject rights.
+- [Terms & Conditions](https://terratrail.app/terms): Terms governing use of the Terratrail platform.

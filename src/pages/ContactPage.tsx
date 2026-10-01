@@ -1,6 +1,7 @@
 import { useState, FormEvent } from 'react'
 import { motion } from 'framer-motion'
 import { PageLayout } from '@components/PageLayout'
+import { useDocumentMeta } from '@/useDocumentMeta'
 
 const channels = [
   { icon: 'mail', label: 'Email us', value: 'hello@terratrail.app', href: 'mailto:hello@terratrail.app' },
@@ -9,6 +10,10 @@ const channels = [
 ]
 
 export function ContactPage() {
+  useDocumentMeta(
+    'Contact — Terratrail',
+    'Questions, a demo request, or help choosing a plan — we usually reply within one business day.',
+  )
   const [sent, setSent] = useState(false)
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
