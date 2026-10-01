@@ -93,6 +93,27 @@ async function main() {
 
   for (const route of ROUTES) {
     await page.goto(`${base}${route}`, { waitUntil: 'networkidle' })
+
+    // framer-motion keeps rewriting inline style="opacity:...; transform:..."
+    // on every animation frame during entrance animations (mount fade-ins,
+    // up to ~1.3s with stagger). `networkidle` doesn't wait for this, so
+    // capturing immediately races a live animation loop — stripping styles
+    // once isn't enough, since the next frame just reapplies them before
+    // `page.content()` runs. Wait long enough for every entrance animation
+    // in this codebase to have settled before touching anything.
+    await page.waitForTimeout(2000)
+
+    // The goal here is text/structure crawlability for AI bots, not
+    // pixel-perfect visuals, so strip any (now-settled) inline styles rather
+    // than depend on their exact final values. Also drop #app-preloader:
+    // it's a sibling overlay (not a wrapper around the real content), serves
+    // no purpose in a static snapshot, and main.tsx's rAF-based removal of
+    // it doesn't reliably run in headless Chromium anyway.
+    await page.evaluate(() => {
+      document.getElementById('app-preloader')?.remove()
+      document.querySelectorAll('[style]').forEach((el) => el.removeAttribute('style'))
+    })
+
     const html = await page.content()
     const outDir = path.join(root, 'public', route.slice(1))
     await mkdir(outDir, { recursive: true })
