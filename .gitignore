@@ -11,6 +11,13 @@ node_modules
 dist
 dist-ssr
 *.local
+*.tsbuildinfo
+
+# Playwright (used by scripts/prerender.mjs)
+test-results
+playwright-report
+blob-report
+playwright/.cache
 
 # Environment variables
 .env
