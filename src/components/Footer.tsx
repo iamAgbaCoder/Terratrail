@@ -105,6 +105,17 @@ export function Footer() {
                 </a>
               ))}
             </div>
+            <Link
+              to="/privacy"
+              aria-label="NDPR Data Compliant, 2026 — view our privacy policy"
+              className="inline-block mt-6 rounded-lg bg-white p-1.5 hover:opacity-90 transition-opacity"
+            >
+              <img
+                src="/ndpr-image.jpg"
+                alt="NDPR Data Compliant, 2026"
+                className="h-10 w-auto"
+              />
+            </Link>
           </div>
 
           {/* Link columns */}
